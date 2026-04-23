@@ -1,0 +1,5 @@
+Error type B at Line 7: Array dimension must be integer.
+Error type B at Line 11: Trailing comma in function parameters.
+Error type B at Line 12: Anonymous struct declaration.
+Error type B at Line 14: Array initialization not supported.
+Error type B at Line 20: Empty while statement body.

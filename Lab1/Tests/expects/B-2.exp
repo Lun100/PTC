@@ -1,0 +1,4 @@
+Error type B at Line 1: Extra closing bracket in array declaration.
+Error type B at Line 11: Variable declaration after statements in block.
+Error type B at Line 18: Variable declaration after statements in block.
+Error type B at Line 24: Variable declaration after statements in block.
