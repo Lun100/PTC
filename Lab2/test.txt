@@ -1,0 +1,316 @@
+
+输入：
+1 int main()
+2 {
+3  int i = 0;
+4 inc(i);
+5 }
+输出：
+样例输入中函数“inc”未定义，因此程序可以输出如下的错误提示信息：
+Error type 2 at Line 4: Undefined function "inc".
+样例 3：输入：
+1 int main()
+2 {
+3 int i, j;
+4 int i;
+5 }
+输出：
+样例输入中变量“i”被重复定义，因此程序可以输出如下的错误提示信息：
+Error type 3 at Line 4: Redefined variable "i".
+样例 4：输入：
+1 int func(int i)
+2 {
+3 return i;
+4 }
+5
+6 int func()
+7 {
+8 return 0;
+9 }
+10
+11 int main()
+12 {
+13 }
+输出：
+样例输入中函数“func”被重复定义，因此程序可以输出如下的错误提示信息：
+Error type 4 at Line 6: Redefined function "func".
+样例 5：
+
+第 3 章 语义分析                      95
+
+输入：
+1 int main()
+2 {
+3 int i;
+4 i = 3.7;
+5 }
+输出：
+样例输入中错将一个浮点常数赋值给一个整型变量，因此程序可以输出如下的错误提示信息：
+Error type 5 at Line 4: Type mismatched for assignment.
+样例 6：输入：
+1 int main()
+2 {
+3 int i;
+4 10 = i;
+5 }
+输出：
+样例输入中整数“10”出现在了赋值号的左边，因此程序可以输出如下的错误提示信息：
+Error type 6 at Line 4: The left-hand side of an assignment must be a variable.
+样例 7：输入：
+1 int main()
+2 {
+3 float j;
+4 10 + j;
+5 }
+输出：
+样例输入中表达式“10+j”的两个操作数的类型不匹配，因此程序可以输出如下的错误提示信息：
+Error type 7 at Line 4: Type mismatched for operands.
+样例 8：输入：
+1 int main()
+2 {
+3  float j = 1.7;
+4 return j;
+5 }
+输出：
+样例输入中“main”函数返回值的类型不正确，因此程序可以输出如下的错误提示信息：
+Error type 8 at Line 4: Type mismatched for return.
+样例 9：输入：
+1 int func(int i)
+2 {
+3 return i;
+4 }
+5
+6 int main()
+7 {
+8 func(1, 2);
+9 }
+输出：
+样例输入中调用函数“func”时实参数目不正确，因此程序可以输出如下的错误提示信息：
+Error type 9 at Line 8: Function "func(int)" is not applicable for arguments "(int, int)".
+样例 10：
+输入：
+1 int main()
+2 {
+3 int i;
+4 i[0];
+5 }
+输出：
+样例输入中变量“i”不是数组型变量，因此程序可以输出如下的错误提示信息：
+Error type 10 at Line 4: "i" is not an array.
+样例 11：输入：
+1 int main()
+2 {
+3 int i;
+4 i(10);
+5 }
+输出：
+样例输入中变量“i”不是函数，因此程序可以输出如下的错误提示信息：
+Error type 11 at Line 4: "i" is not a function.
+样例 12：输入：
+1 int main()
+2 {
+3 int i[10];
+4 i[1.5] = 10;
+5 }
+输出：
+样例输入中数组访问符中出现了非整型常数“1.5”，因此程序可以输出如下的错误提示信息：
+Error type 12 at Line 4: "1.5" is not an integer.
+样例 13：输入：
+1 struct Position
+2 {
+3 float x, y;
+4 };
+5
+6 int main()
+7 {
+8 int i;
+9 i.x;
+10 }
+输出：
+样例输入中变量“i”不是结构体类型变量，因此程序可以输出如下的错误提示信息：
+Error type 13 at Line 9: Illegal use of ".".
+样例 14：输入：
+1 struct Position
+2 {
+3 float x, y;
+4 };
+5
+6 int main()
+7 {
+8 struct Position p;
+9  if (p.n == 3.7)
+10  return 0;
+11 }
+输出：
+样例输入中结构体变量“p”访问了未定义的域“n”，因此程序可以输出如下的错误信息：
+Error type 14 at Line 9: Non-existent field "n".
+样例 15：输入：
+1 struct Position
+2 {
+3 float x, y;
+4 int x;
+5 };
+6
+7 int main()
+8 {
+9 }
+输出：
+样例输入中结构体的域“x”被重复定义，因此程序可以输出如下的错误信息：
+Error type 15 at Line 4: Redefined field "x".
+样例 16：输入：
+1 struct Position
+2 {
+3 float x;
+4 };
+5
+6 struct Position
+7 {
+8 int y;
+9 };
+10
+11 int main()
+12 {
+13 }
+输出：
+样例输入中两个结构体的名字重复，因此程序可以输出如下的错误信息：
+Error type 16 at Line 6: Duplicated name "Position".
+
+样例 17：
+输入：
+1 int main()
+2 {
+3 struct Position pos;
+4 }
+输出：
+样例输入中结构体“Position”未经定义，因此程序可以输出如下的错误信息：
+Error type 17 at Line 3: Undefined structure "Position".
+
+3.3.7 样例（选做部分）
+这节列举选做要求样例。样例 1：
+输入：
+1 int func(int a); 2
+3 int func(int a)
+4 {
+5 return 1;
+6 }
+7
+8 int main()
+9 {
+10 }
+输出：
+如果程序需要完成要求 3.1，这个样例输入不存在任何词法、语法或语义错误，因此不需要输出错误信息。
+如果程序不需要完成要求 3.1，这个样例输入存在语法错误，因此程序可以输出如下的错误提示信息：
+Error type B at Line 1: Incomplete definition of function "func".
+样例 2：输入：
+1 struct Position
+2 {
+3 float x,y;
+4 };
+5
+6 int func(int a); 7
+8 int func(struct Position p); 9
+10 int main()
+11 {
+
+2                       编译方法、技术与实践
+
+12 }
+输出：
+如果程序需要完成要求 3.1，这个样例输入存在两处语义错误：一是函数“func”的两次声明不一致；二是函数“func”未定义，因此程序可以输出如下的错误提示信息：
+Error type 19 at Line 8: Inconsistent declaration of function "func". Error type 18 at Line 6: 
+Undefined function "func".
+注意，我们对错误提示信息的顺序不做要求。
+如果程序不需要完成要求 3.1，这个样例输入存在两处语法错误，因此程序可以输出如下的错误提示信息：
+Error type B at Line 6: Incomplete definition of function "func". Error type B at Line 8: 
+Incomplete definition of function "func".
+样例 3：
+输入：
+1 int func()
+2 {
+3  int i = 10;
+4 return i;
+5 }
+6
+7 int main()
+8 {
+9 int i;
+10 i = func();
+11 }
+输出：
+如果程序需要完成要求 3.2，这个样例输入不存在任何词法、语法或语义错误，因此不需要输出错误信息。
+如果程序不需要完成要求 3.2，样例输入中的变量“i”被重复定义，因此程序可以输出如下的错误信息：
+Error type 3 at Line 9: Redefined variable "i".
+
+样例 4：
+输入：
+1 int func()
+2 {
+3  int i = 10;
+4 return i;
+5 }
+6
+7 int main()
+8 {
+9 int i;
+10 int i, j;
+11 i = func();
+12 }
+输出：
+如果程序需要完成要求 3.2，样例输入中的变量“i”被重复定义，因此程序可以输出如下的错误提示信息：
+Error type 3 at Line 10: Redefined variable "i".
+如果程序不需要完成要求 3.2，样例输入中的变量“i”被重复定义了两次，因此程序可以输出如下的错误提示信息：
+Error type 3 at Line 9: Redefined variable "i". Error type 3 at Line 10: Redefined variable "i".样例 
+5：
+输入：
+1 struct Temp1
+2 {
+3 int i;
+4 float j;
+5 };
+6
+7 struct Temp2
+8 {
+9 int x;
+10 float y;
+11 };
+12
+13 int main()
+14 {
+15 struct Temp1 t1;
+16 struct Temp2 t2;
+17 t1 = t2;
+18 }
+输出：
+如果程序需要完成要求 3.3，这个样例输入不存在任何词法、语法或语义错误，因此不需要输出错误信息。
+如果程序不需要完成要求 3.3，样例输入中的语句“t1 = t2;”其赋值号两边变量的类型不匹配，因此程序可以输出如下的错误提示信息：
+Error type 5 at Line 17: Type mismatched for assignment.
+样例 6：输入：
+1 struct Temp1
+2 {
+3 int i;
+4 float j;
+5 };
+6
+7 struct Temp2
+8 {
+9 int x;
+10 };
+11
+12 int main()
+13 {
+14 struct Temp1 t1;
+15 struct Temp2 t2;
+16 t1 = t2;
+17 }
+输出：
+如果程序需要完成要求 3.3，样例输入中的语句“t1=t2;”其赋值号两边变量的类型不匹配，因此程序可以输出如下的错误提示信息：
+Error type 5 at Line 16: Type mismatched for assignment.
+
+如果程序不需要完成要求 3.3，应该输出与上述一样的错误提示信息：
+Error type 5 at Line 16: Type mismatched for assignment.
+
+
+3.4 本章小结
+在本章中，我们已经详细讨论了语义分析的理论以及实践技术。语义分析的任务是在代码通过语法分析判断为符合语法规范之后，进一步将标识符的定义与使用相关联，从而检查每一个表达式是否拥有正确的类型，进而将抽象语
+法转换成更简单的、适合于生成中间代码的表示。
+本章首先介绍了形式语义学中目前较流行的三种理论方法：通过上下文无关文法、属性和语义规则相结合的属性文法；在属性文法基础上增加副作用的语法制导的定义；语法制导的定义进
